@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item android:title="Menu">
+        <menu>
+            <item android:title="Home"
+                  android:id="@+id/nav_item_inbox"
+                />
+
+            <item android:title="Teste"
+              android:id="@+id/nav_item_draft"
+              />
+        </menu>
+    </item>
+
+
+    <item android:title="Teste">
+        <menu>
+            <item
+                android:title="Teste"
+                />
+            <item
+                android:title="Teste"
+                />
+        </menu>
+    </item>
+
+    <group android:id="@+id/group_settings_id">
+
+        <item android:title="Teste"
+              />
+        <item android:title="Teste"
+             />
+    </group>
+
+
+</menu>
