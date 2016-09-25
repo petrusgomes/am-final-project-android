@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "1048921723612",
+    "firebase_url": "https://notifycar-b9f1a.firebaseio.com",
+    "project_id": "notifycar-b9f1a",
+    "storage_bucket": "notifycar-b9f1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048921723612:android:c1a4ddba544320c8",
+        "android_client_info": {
+          "package_name": "br.com.notifycar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048921723612-u2n87ktff3mogg30iiruhtjfcs7na9fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfN7-0BKbyd6SWLMtv29hY6Y5HhtH84ZM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048921723612:android:451c5da6c02660a4",
+        "android_client_info": {
+          "package_name": "br.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048921723612-u2n87ktff3mogg30iiruhtjfcs7na9fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfN7-0BKbyd6SWLMtv29hY6Y5HhtH84ZM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
