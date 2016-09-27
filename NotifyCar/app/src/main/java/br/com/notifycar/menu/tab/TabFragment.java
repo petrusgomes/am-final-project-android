@@ -1,4 +1,4 @@
-package br.com.notifycar.menutab;
+package br.com.notifycar.menu.tab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import br.com.notifycar.R;
+import br.com.notifycar.menu.fragments.HomeFragment;
+import br.com.notifycar.menu.fragments.NoticacoesFragment;
+import br.com.notifycar.menu.fragments.VeiculosFragment;
 
 /**
  * Created by Ratan on 7/27/2015.
@@ -68,9 +71,9 @@ public class TabFragment extends Fragment {
         public Fragment getItem(int position)
         {
           switch (position){
-              case 0 : return new VeiculosFragment();
+              case 0 : return new HomeFragment();
               case 1 : return new NoticacoesFragment();
-              case 2 : return new MapaFragment();
+              case 2 : return new VeiculosFragment();
           }
         return null;
         }
@@ -91,11 +94,11 @@ public class TabFragment extends Fragment {
 
             switch (position){
                 case 0 :
-                    return "VeiculosFragment";
+                    return "Home";
                 case 1 :
                     return "Notificações";
                 case 2 :
-                    return "Mapa";
+                    return "Veiculos";
             }
                 return null;
         }

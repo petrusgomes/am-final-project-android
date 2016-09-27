@@ -1,4 +1,4 @@
-package br.com.notifycar.menutab;
+package br.com.notifycar.menu;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,8 +8,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import br.com.notifycar.R;
+import br.com.notifycar.controller.mapa.MapsActivity;
+import br.com.notifycar.menu.fragments.HomeFragment;
+import br.com.notifycar.menu.tab.TabFragment;
 
 public class MenuTabActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
@@ -26,6 +30,7 @@ public class MenuTabActivity extends AppCompatActivity {
          *Setup the DrawerLayout and NavigationView
          */
 
+
              mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
              mNavigationView = (NavigationView) findViewById(R.id.shitstuff) ;
 
@@ -37,6 +42,8 @@ public class MenuTabActivity extends AppCompatActivity {
              mFragmentManager = getSupportFragmentManager();
              mFragmentTransaction = mFragmentManager.beginTransaction();
              mFragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
+
+
         /**
          * Setup click events on the Navigation View Items.
          */

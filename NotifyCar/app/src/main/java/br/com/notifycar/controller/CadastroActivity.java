@@ -2,13 +2,12 @@ package br.com.notifycar.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import br.com.notifycar.R;
-import br.com.notifycar.api.CadastroUsuarioTask;
+import br.com.notifycar.repository.api.CadastroUsuarioTask;
 
 /**
  * Created by Desenvolvimento on 23/09/2016.

@@ -1,4 +1,4 @@
-package br.com.notifycar.menutab;
+package br.com.notifycar.menu.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,11 +12,11 @@ import br.com.notifycar.R;
 /**
  * Created by Ratan on 7/29/2015.
  */
-public class MapaFragment extends Fragment {
+public class VeiculosFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_mapa,null);
+        return inflater.inflate(R.layout.activity_veiculos,null);
     }
 }

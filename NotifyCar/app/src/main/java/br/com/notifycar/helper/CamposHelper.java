@@ -1,7 +1,9 @@
 package br.com.notifycar.helper;
 
 import android.app.Activity;
-import android.util.Log;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.notifycar.R;
+import br.com.notifycar.repository.api.BloqueioDesbloqueioVeiculoTask;
+import br.com.notifycar.controller.mapa.MapsActivity;
 import br.com.notifycar.model.Usuario;
 
 /**
@@ -29,6 +33,9 @@ public class CamposHelper {
     private EditText edtLoginSenha;
 
     private ListView listView;
+    private BloqueioDesbloqueioVeiculoTask task;
+
+
 
     public JSONObject recuperaCamposUsuario(Activity activity) throws JSONException {
         edtNome = (EditText) activity.findViewById(R.id.nome);
@@ -61,15 +68,12 @@ public class CamposHelper {
 
 
                 listaUsuario.add(usuario);
-//                lista.getJSONObject(i).getString("nome");
-//                Log.i("******", lista.getJSONObject(i).getString("email"));
             }
 
             ArrayAdapter<Usuario> adp = new ArrayAdapter<Usuario>(activity, android.R.layout.simple_list_item_1, listaUsuario);
             listView.setAdapter(adp);
 
 
-//            Log.i("tee", lista.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -85,5 +89,58 @@ public class CamposHelper {
 
         return login;
     }
+
+
+    public void recuperaListaSafe(Activity activity, String json){
+        String urlRemote = "";
+        try {
+            JSONArray lista = new JSONArray(json);
+            for (int i = 0; i < lista.length() ; i++) {
+                urlRemote = lista.getJSONObject(i).getString("remoteControl");
+            }
+
+            Intent it = new Intent(activity, MapsActivity.class);
+            it.putExtra("urlRemoteControl", urlRemote);
+            activity.startActivity(it);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void registraSafeVeiculo(final Activity activity, final String urlSafe){
+        final CharSequence[] items = {"Bloquear Veiculo","Desbloquear Veiculo"};
+        // arraylist to keep the selected items
+        final ArrayList seletedItems = new ArrayList();
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setTitle("Proteja seu veiculo !!").setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
+                        if (isChecked) {
+                            int i = indexSelected;
+                            if(i == 0){
+                                task = new BloqueioDesbloqueioVeiculoTask(urlSafe,"lock",activity);
+                                task.execute();
+                                dialog.dismiss();
+                            }  else if(i == 1){
+                                task = new BloqueioDesbloqueioVeiculoTask(urlSafe,"reset",activity);
+                                task.execute();
+                                dialog.dismiss();
+                            }
+                            seletedItems.add(indexSelected);
+                        } else if (seletedItems.contains(indexSelected)) {
+                            // Else, if the item is already in the array, remove it
+                            seletedItems.remove(Integer.valueOf(indexSelected));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                }).create();
+        dialog.show();
+    }
+
 
 }

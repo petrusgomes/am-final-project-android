@@ -1,4 +1,4 @@
-package br.com.notifycar.menutab;
+package br.com.notifycar.menu.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
