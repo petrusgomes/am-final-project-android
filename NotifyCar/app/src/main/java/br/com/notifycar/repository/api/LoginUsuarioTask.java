@@ -1,7 +1,8 @@
-package br.com.notifycar.api;
+package br.com.notifycar.repository.api;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,7 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import br.com.notifycar.helper.CamposHelper;
-import br.com.notifycar.menutab.MenuTabActivity;
+import br.com.notifycar.menu.MenuTabActivity;
 import br.com.notifycar.util.UtilJson;
 
 /**
@@ -25,13 +26,21 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
     private Activity activity;
     private HttpURLConnection conn;
     private String json = "";
-    private
+    private ProgressDialog progressDialog;
     CamposHelper helper = new CamposHelper();
 
     public LoginUsuarioTask(Activity activity){
         this.activity = activity;
     }
 
+
+    @Override
+    protected void onPreExecute() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setTitle("Carregando...");
+        progressDialog.setMessage("Aguarde");
+        progressDialog.show();
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -95,5 +104,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        progressDialog.dismiss();
     }
 }

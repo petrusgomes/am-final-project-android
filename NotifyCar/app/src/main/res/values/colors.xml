@@ -6,5 +6,6 @@
     <color name="black">#000</color>
     <color name="orange">#FA0</color>
     <color name="white">#FFF</color>
+    <color name="turquiose">#40E0D0</color>
     <color name="bgLogo">#0e293c</color>
 </resources>
