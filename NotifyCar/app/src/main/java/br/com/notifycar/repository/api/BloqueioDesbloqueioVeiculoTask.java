@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import java.io.DataOutputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import br.com.notifycar.util.UtilJson;
 
 /**
  * Created by Desenvolvimento on 25/09/2016.
@@ -15,6 +19,7 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
     private String aux;
     private String urlSafe;
     private Activity activity;
+    private String json;
 
     public BloqueioDesbloqueioVeiculoTask(String urlSafe, String aux, Activity activity){
         this.aux = aux;
@@ -28,11 +33,24 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
             URL url = new URL(urlSafe + "/" + aux);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setDoOutput(true);
+            DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+
+            if(conn.getResponseCode() == 200) {
+                InputStream conteudo = conn.getInputStream();
+                json = UtilJson.toString(conteudo);
+            }
+
+            out.writeBytes("");
+            out.flush();
+            out.close();
 
         }catch (Exception ex) {
             ex.printStackTrace();
         }
-        return "";
+        return json;
     }
 
     @Override
