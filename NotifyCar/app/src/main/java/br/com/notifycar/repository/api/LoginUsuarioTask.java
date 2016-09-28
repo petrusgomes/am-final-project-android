@@ -69,8 +69,6 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
 
-
-
         return json;
 
     }

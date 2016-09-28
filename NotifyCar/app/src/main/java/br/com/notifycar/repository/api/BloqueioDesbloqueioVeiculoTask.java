@@ -2,6 +2,7 @@ package br.com.notifycar.repository.api;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.DataOutputStream;
@@ -19,6 +20,7 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
     private String aux;
     private String urlSafe;
     private Activity activity;
+    private HttpURLConnection conn;
 
     public BloqueioDesbloqueioVeiculoTask(String urlSafe, String aux, Activity activity){
         this.aux = aux;
@@ -28,9 +30,9 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
 
     @Override
     protected String doInBackground(String... params) {
-        try{
+        try {
             URL url = new URL(urlSafe + "/" + aux);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("charset", "utf-8");
@@ -40,10 +42,10 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
             out.flush();
             out.close();
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return "";
+        return null;
     }
 
     @Override
