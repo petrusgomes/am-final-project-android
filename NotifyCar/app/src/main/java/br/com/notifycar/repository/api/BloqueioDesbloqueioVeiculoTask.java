@@ -21,7 +21,6 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
     private String urlSafe;
     private Activity activity;
     private HttpURLConnection conn;
-    private String json = "";
 
     public BloqueioDesbloqueioVeiculoTask(String urlSafe, String aux, Activity activity){
         this.aux = aux;
@@ -41,16 +40,10 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
             DataOutputStream out = new DataOutputStream(conn.getOutputStream());
             out.flush();
             out.close();
-
-            if(conn.getResponseCode() == 200) {
-                InputStream conteudo = conn.getInputStream();
-                json = UtilJson.toString(conteudo);
-            }
-
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return "";
+        return null;
     }
 
     @Override
