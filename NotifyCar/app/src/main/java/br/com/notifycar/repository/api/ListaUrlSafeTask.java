@@ -3,6 +3,7 @@ package br.com.notifycar.repository.api;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -34,18 +35,14 @@ public class ListaUrlSafeTask extends AsyncTask<String, Void, String> {
             url = new URL("http://notifycar-api.mybluemix.net/gateway/register/494101363422774");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-
-
-            int codigo = conn.getResponseCode();
-            if (codigo == 200) {
+            if (conn.getResponseCode() == 200) {
                 InputStream conteudo = conn.getInputStream();
                 json = UtilJson.toString(conteudo);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
         return json;
-
     }
 
     @Override
