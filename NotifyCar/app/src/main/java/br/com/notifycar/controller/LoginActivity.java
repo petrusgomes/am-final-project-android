@@ -5,20 +5,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.notifycar.R;
 import br.com.notifycar.helper.CamposValidate;
+import br.com.notifycar.repository.api.ListaVeiculoStatusGeralTask;
 import br.com.notifycar.repository.api.LoginUsuarioTask;
 import br.com.notifycar.util.CustomImgLogo;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
-
 
     private Button btnLogin;
     private Button btnCadastrarActivity;
     private LoginUsuarioTask task;
     private CamposValidate validate;
     private CustomImgLogo customImgLogo;
+    private EditText edtEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
 
+        edtEmail = (EditText) findViewById(R.id.edtEmailLogin);
+
+
     }
 
     @Override
@@ -48,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
            case R.id.btnLogin:
               boolean vldExecute = validate.validaCamposLogin(this);
                if(vldExecute == true) {
-                   task = new LoginUsuarioTask(this);
+                   task = new LoginUsuarioTask(this,edtEmail.getText().toString());
                    task.execute();
                }
                break;
