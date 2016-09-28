@@ -11,6 +11,7 @@ import br.com.notifycar.controller.LoginActivity;
 import br.com.notifycar.controller.mapa.MapsActivity;
 import br.com.notifycar.menu.MenuTabActivity;
 import br.com.notifycar.menu.fragments.HomeFragment;
+import br.com.notifycar.util.DeviceID;
 
 /**
  * Created by Desenvolvimento on 22/09/2016.
@@ -24,7 +25,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "" + refreshedToken);
-
 
         // TODO: Implement this method to send any registration to your app's servers.
         sendRegistrationToServer(refreshedToken);

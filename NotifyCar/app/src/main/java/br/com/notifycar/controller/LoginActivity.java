@@ -13,6 +13,7 @@ import br.com.notifycar.helper.CamposValidate;
 import br.com.notifycar.repository.api.ListaVeiculoStatusGeralTask;
 import br.com.notifycar.repository.api.LoginUsuarioTask;
 import br.com.notifycar.util.CustomImgLogo;
+import br.com.notifycar.util.DeviceID;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -22,6 +23,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CamposValidate validate;
     private CustomImgLogo customImgLogo;
     private EditText edtEmail;
+    private String deviceId;
+    private DeviceID dvId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         edtEmail = (EditText) findViewById(R.id.edtEmailLogin);
 
+        deviceId = dvId.retornaIdDevice();
+
 
     }
 
@@ -46,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onResume() {
         super.onResume();
         validate = new CamposValidate();
+        dvId = new DeviceID(this);
     }
 
     @Override
