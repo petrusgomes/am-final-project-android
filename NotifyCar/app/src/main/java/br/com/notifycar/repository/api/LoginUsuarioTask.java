@@ -27,10 +27,13 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
     private HttpURLConnection conn;
     private String json = "";
     private ProgressDialog progressDialog;
+    private String cpEmail;
+    private String tokenParaRegistro;
     CamposHelper helper = new CamposHelper();
 
-    public LoginUsuarioTask(Activity activity){
+    public LoginUsuarioTask(Activity activity, String cpEmail){
         this.activity = activity;
+        this.cpEmail = cpEmail;
     }
 
 
@@ -80,6 +83,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
 
             if(validaLogin == true){
                 Intent it = new Intent(activity, MenuTabActivity.class);
+                it.putExtra("cpEmail", cpEmail);
                 activity.startActivity(it);
             } else {
                 AlertDialog alerta;

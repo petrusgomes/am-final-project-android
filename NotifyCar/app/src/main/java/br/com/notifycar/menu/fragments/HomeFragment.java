@@ -31,10 +31,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         btnMapa = (Button) v.findViewById(R.id.btnMapa);
         btnMapa.setOnClickListener(this);
 
-
+        //CAPTURAR VALOR TOKEN E EMAIL
         return v;
     }
 
+    // IMPLEMENTAR ONRESUME 
+    // PUT USUARIO NO TOKEN PASSANDO O EMAIL COMO PARAMETRO
 
     @Override
     public void onClick(View v) {
