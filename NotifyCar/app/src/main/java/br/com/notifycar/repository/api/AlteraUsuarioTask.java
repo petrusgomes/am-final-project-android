@@ -21,8 +21,7 @@ public class AlteraUsuarioTask extends AsyncTask<String, Void, String> {
         try {
             url = new URL("http://notifycar-api.mybluemix.net/gateway/register/494101363422774");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("PUT");
-
+            conn.setRequestMethod("GET");
 
             if (conn.getResponseCode() == 200) {
 
