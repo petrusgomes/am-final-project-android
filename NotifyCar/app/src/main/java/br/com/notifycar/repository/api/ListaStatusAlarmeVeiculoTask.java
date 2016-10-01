@@ -11,26 +11,27 @@ import br.com.notifycar.helper.CamposHelper;
 import br.com.notifycar.util.UtilJson;
 
 /**
- * Created by Desenvolvimento on 28/09/2016.
+ * Created by Desenvolvimento on 29/09/2016.
  */
-public class ListaInformacoesUsuarioTask extends AsyncTask<String, Void, String> {
+public class ListaStatusAlarmeVeiculoTask extends AsyncTask<String, Void, String> {
+
 
     private String json = "";
-    private String emailUsuario = "";
+    private String idVeiculo = "";
     CamposHelper helper = new CamposHelper();
 
     private Activity activity;
 
-    public ListaInformacoesUsuarioTask(Activity activity, String emailUsuario){
+    public ListaStatusAlarmeVeiculoTask(Activity activity, String idVeiculo){
         this.activity = activity;
-        this.emailUsuario = emailUsuario;
+        this.idVeiculo = idVeiculo;
     }
 
     @Override
     protected String doInBackground(String... strings) {
         URL url = null;
         try {
-            url = new URL("http://notifycar-api.mybluemix.net/usuario/all/"+emailUsuario);
+            url = new URL("http://http://notifycar-api.mybluemix.net/localizacao/veiculo/"+idVeiculo+"/1");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -48,8 +49,7 @@ public class ListaInformacoesUsuarioTask extends AsyncTask<String, Void, String>
 
     @Override
     protected void onPostExecute(String json) {
-
-        helper.recuperaInformaçõesUsuario(activity, json);
-
+        helper.listaStatusAlarme(activity, json);
     }
+
 }

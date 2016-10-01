@@ -27,8 +27,8 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
     private HttpURLConnection conn;
     private String json = "";
     private ProgressDialog progressDialog;
-    private String cpEmail;
     private String tokenParaRegistro;
+    private String cpEmail;
     CamposHelper helper = new CamposHelper();
 
     public LoginUsuarioTask(Activity activity, String cpEmail){
@@ -81,27 +81,29 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
 
             Boolean validaLogin = obj.getBoolean("auth");
 
-            if(validaLogin == true){
-                Intent it = new Intent(activity, MenuTabActivity.class);
-                it.putExtra("cpEmail", cpEmail);
-                activity.startActivity(it);
+            if (validaLogin == true) {
+                ListaInformacoesUsuarioTask taskUsuario = new ListaInformacoesUsuarioTask(activity,cpEmail);
+                taskUsuario.execute();
             } else {
-                AlertDialog alerta;
+                    progressDialog.dismiss();
 
-                final AlertDialog.Builder builderAlert = new AlertDialog.Builder(activity);
+                    AlertDialog alerta;
 
-                builderAlert.setTitle("ERRO!");
-                builderAlert.setMessage("USUARIO OU SENHA INCORRETO");
+                    final AlertDialog.Builder builderAlert = new AlertDialog.Builder(activity);
 
-                builderAlert.setNeutralButton("OK", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    builderAlert.setTitle("ERRO!");
+                    builderAlert.setMessage("USUARIO OU SENHA INCORRETO");
 
-                    }
-                });
-                alerta = builderAlert.create();
-                alerta.show();
-            }
+                    builderAlert.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alerta = builderAlert.create();
+                    alerta.show();
+                }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,4 +111,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
 
         progressDialog.dismiss();
     }
+
+
+
 }

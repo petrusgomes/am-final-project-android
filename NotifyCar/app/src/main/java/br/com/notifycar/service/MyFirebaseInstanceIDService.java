@@ -1,17 +1,11 @@
 package br.com.notifycar.service;
 
-import android.content.Intent;
 import android.util.Log;
-import android.util.LogPrinter;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
-import br.com.notifycar.controller.LoginActivity;
-import br.com.notifycar.controller.mapa.MapsActivity;
-import br.com.notifycar.menu.MenuTabActivity;
-import br.com.notifycar.menu.fragments.HomeFragment;
-import br.com.notifycar.util.DeviceID;
+import br.com.notifycar.repository.api.CadastraFcmIdUsuarioTask;
 
 /**
  * Created by Desenvolvimento on 22/09/2016.
@@ -19,12 +13,22 @@ import br.com.notifycar.util.DeviceID;
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private static final String TAG = "FirebaseToken: ";
+    private CadastraFcmIdUsuarioTask task;
 
     @Override
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "" + refreshedToken);
+
+        task = new CadastraFcmIdUsuarioTask(refreshedToken,"0");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                task.execute();
+            }
+        }).start();
+
 
         // TODO: Implement this method to send any registration to your app's servers.
         sendRegistrationToServer(refreshedToken);

@@ -1,5 +1,3 @@
-//POR ENQUANTO SEM USO!!
-
 //package br.com.notifycar.repository.api;
 //
 //import android.app.Activity;
