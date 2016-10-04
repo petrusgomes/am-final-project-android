@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cadastro_usuario"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryNTC"
+    tools:context="com.example.renan.myapplication.CadastroUsuarioActivity">
+
+    <ImageView
+        android:id="@+id/ntc_logo_image_cadastro_view"
+        app:srcCompat="@drawable/logo20"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:text="Cadastro de usuário"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:id="@+id/CadastroUsuario"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        />
+    <EditText
+        android:id="@+id/ntc_edit_text_cadastro_name"
+        android:hint="Nome completo"
+        android:textColorHint="@color/colorTextDefaultNTX"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:layout_centerHorizontal="true"
+        android:ems="15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CadastroUsuario"
+        android:layout_marginTop="75dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:inputType="text"
+        android:textColorHighlight="@android:color/background_dark" />
+    <EditText
+        android:id="@+id/ntc_edit_text_cadastro_email"
+        android:hint="Email"
+        android:textColorHint="@color/colorTextDefaultNTX"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:ems="15"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ntc_edit_text_cadastro_name"
+        android:layout_marginTop="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/ntc_edit_text_cadastro_telefone"
+        android:hint="Telefone"
+        android:textColorHint="@color/colorTextDefaultNTX"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:ems="15"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ntc_edit_text_cadastro_email"
+        android:layout_marginTop="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:inputType="number"
+        />
+    <EditText
+        android:id="@+id/ntc_edit_text_cadastro_senha"
+        android:hint="Senha"
+        android:textColorHint="@color/colorTextDefaultNTX"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:ems="15"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ntc_edit_text_cadastro_telefone"
+        android:layout_marginTop="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:inputType="textPassword"
+
+        />
+
+    <Button
+        android:text="Avançar"
+        android:id="@+id/ntc_edit_text_cadastro_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ntc_edit_text_cadastro_senha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:ems="16"
+        />
+
+    <TextView
+        android:id="@+id/ntc_text_view_cadastro_loguin"
+        android:text="@string/possui_conta"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ntc_edit_text_cadastro_button"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:onClick="aindafaltaAlgumacoisa"/>
+
+
+
+</RelativeLayout>
