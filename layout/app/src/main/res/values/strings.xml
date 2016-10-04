@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_activity_cadastro_usuario">CadastroUsuarioActivity</string>
+    <string name="possui_conta"><u>Já possui um cadastro? Clique aqui para realizar o login.</u></string>
+    <string-array name="colors_spinner">
+        <item>Vermelho</item>
+        <item>Prata</item>
+        <item>Branco</item>
+        <item>Preto</item>
+        <item>Amarelo</item>
+        <item>Cinza</item>
+        <item>Azul</item>
+        <item>Verde</item>
+
+    </string-array>
+    <string-array name="marcas_spinners">
+        <item>Honda</item>
+        <item>Fiat</item>
+        <item>BMW</item>
+    </string-array>
+</resources>
