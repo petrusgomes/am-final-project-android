@@ -3,34 +3,38 @@ package br.com.notifycar.repository.api;
 import android.app.Activity;
 import android.os.AsyncTask;
 
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import br.com.notifycar.helper.CamposHelper;
+import br.com.notifycar.interfacetask.AsyncResponseLoc;
 import br.com.notifycar.util.UtilJson;
 
 /**
- * Created by Desenvolvimento on 28/09/2016.
+ * Created by Desenvolvimento on 01/10/2016.
  */
-public class ListaInformacoesUsuarioTask extends AsyncTask<String, Void, String> {
+public class ListaUltimaLocalizacaoTask extends AsyncTask<String, Void, String> {
 
+    public AsyncResponseLoc delegate  = null;
     private String json = "";
-    private String emailUsuario = "";
-    CamposHelper helper = new CamposHelper();
+    private String veiculoId = "";
 
     private Activity activity;
 
-    public ListaInformacoesUsuarioTask(Activity activity, String emailUsuario){
+    public ListaUltimaLocalizacaoTask(Activity activity, String veiculoId){
         this.activity = activity;
-        this.emailUsuario = emailUsuario;
+        this.veiculoId = veiculoId;
     }
 
     @Override
     protected String doInBackground(String... strings) {
         URL url = null;
         try {
-            url = new URL("http://notifycar-api.mybluemix.net/usuario/all/"+emailUsuario);
+            url = new URL("http://notifycar-api.mybluemix.net/localizacao/veiculo/57e719f9da1d4e003ade3918/1");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -49,8 +53,15 @@ public class ListaInformacoesUsuarioTask extends AsyncTask<String, Void, String>
     @Override
     protected void onPostExecute(String json) {
 
-        helper.recuperaInformaçõesUsuario(activity, json);
+        try {
+//            JSONObject listaLoc = new JSONObject(json);
+//            listaLoc.getString("latitude");
+//            listaLoc.getString("longitude");
 
-        helper.hideDialog(activity);
+            delegate.processResult(json);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 }

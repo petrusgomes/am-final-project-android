@@ -21,7 +21,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "" + refreshedToken);
 
-        task = new CadastraFcmIdUsuarioTask(refreshedToken,"0");
+        task = new CadastraFcmIdUsuarioTask(refreshedToken,"teste@gmail.com");
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        validate = new CamposValidate();
         dvId = new DeviceID(this);
         deviceId = dvId.retornaIdDevice();
     }
@@ -62,11 +61,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
        switch (v.getId()){
            case R.id.btnLogin:
+              validate = new CamposValidate();
               boolean vldExecute = validate.validaCamposLogin(this);
-               taskFcm = new AlteraFcmIdUsuarioTask(deviceId);
-               taskFcm.execute();
-
                if(vldExecute == true) {
+                   taskFcm = new AlteraFcmIdUsuarioTask(edtEmail.getText().toString());
+                   taskFcm.execute();
 
                    task = new LoginUsuarioTask(this, edtEmail.getText().toString());
                    task.execute();

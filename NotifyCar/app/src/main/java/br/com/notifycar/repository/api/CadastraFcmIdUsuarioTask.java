@@ -20,11 +20,11 @@ import java.net.URL;
 public class CadastraFcmIdUsuarioTask extends AsyncTask<String, Void, String> {
 
     private String fcmId;
-    private String deviceId;
+    private String emailUsuario;
 
-    public CadastraFcmIdUsuarioTask(String fcmId, String deviceId){
+    public CadastraFcmIdUsuarioTask(String fcmId, String emailUsuario){
         this.fcmId = fcmId;
-        this.deviceId = deviceId;
+        this.emailUsuario = emailUsuario;
 
     }
 
@@ -40,7 +40,7 @@ public class CadastraFcmIdUsuarioTask extends AsyncTask<String, Void, String> {
             DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 
             JSONObject fire = new JSONObject();
-            fire.put("deviceId", deviceId);
+            fire.put("emailUsuario", emailUsuario);
             fire.put("fcmId", fcmId);
 
             out.writeBytes(fire.toString());

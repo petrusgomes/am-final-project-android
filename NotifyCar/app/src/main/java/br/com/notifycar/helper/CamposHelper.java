@@ -1,12 +1,10 @@
 package br.com.notifycar.helper;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
-import android.media.Image;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,9 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.notifycar.R;
+import br.com.notifycar.controller.mapa.MapsViewActivity;
 import br.com.notifycar.menu.MenuTabActivity;
 import br.com.notifycar.repository.api.BloqueioDesbloqueioVeiculoTask;
-import br.com.notifycar.controller.mapa.MapsActivity;
+import br.com.notifycar.controller.mapa.MapsViewActivity;
 import br.com.notifycar.model.Usuario;
 
 /**
@@ -44,6 +43,7 @@ public class CamposHelper {
     private TextView txtNomeModelo;
     private TextView txtNomeVeiculo;
 
+    ProgressDialog progressDialog;
     private ImageView imgStatusBlockVeiculo;
 
 
@@ -101,7 +101,7 @@ public class CamposHelper {
     }
 
 
-    public void recuperaListaSafe(Activity activity, String json){
+    public void recuperaListaSafe(Activity activity, String json, String idVeiculo){
         String urlRemote = "";
         try {
             JSONArray lista = new JSONArray(json);
@@ -109,8 +109,9 @@ public class CamposHelper {
                 urlRemote = lista.getJSONObject(i).getString("remoteControl");
             }
 
-            Intent it = new Intent(activity, MapsActivity.class);
+            Intent it = new Intent(activity, MapsViewActivity.class);
             it.putExtra("urlRemoteControl", urlRemote);
+            it.putExtra("idVeiculo", idVeiculo);
             activity.startActivity(it);
 
         } catch (JSONException e) {
@@ -178,7 +179,9 @@ public class CamposHelper {
           it.putExtra("idVeiculo", idVeiculo);
           it.putExtra("emailUsuario", emailUsuario);
           it.putExtra("modeloVeiculo", modeloVeiculo);
+          it.putExtra("fabricanteVeiculo", fabricanteVeiculo);
             activity.startActivity(it);
+
 
         }catch(Exception e){
             e.printStackTrace();
@@ -216,6 +219,16 @@ public class CamposHelper {
         }
     }
 
+    public void showDialog(Activity activity){
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setTitle("Carregando...");
+        progressDialog.setMessage("Aguarde");
+        progressDialog.show();
+    }
 
+    public void hideDialog(Activity activity){
+        ProgressDialog progressDialog = new ProgressDialog(activity);
+        progressDialog.dismiss();
+    }
 
 }

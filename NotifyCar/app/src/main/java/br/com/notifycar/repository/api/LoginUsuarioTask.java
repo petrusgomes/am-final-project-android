@@ -39,10 +39,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setTitle("Carregando...");
-        progressDialog.setMessage("Aguarde");
-        progressDialog.show();
+        helper.showDialog(activity);
     }
 
     @Override
@@ -85,7 +82,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
                 ListaInformacoesUsuarioTask taskUsuario = new ListaInformacoesUsuarioTask(activity,cpEmail);
                 taskUsuario.execute();
             } else {
-                    progressDialog.dismiss();
+                    helper.hideDialog(activity);
 
                     AlertDialog alerta;
 
@@ -109,7 +106,6 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
 
-        progressDialog.dismiss();
     }
 
 

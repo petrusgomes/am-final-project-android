@@ -14,16 +14,22 @@ import java.net.URL;
  */
 public class AlteraFcmIdUsuarioTask extends AsyncTask<String,Void,String> {
 
-    private String deviceId;
+    private String emailUsuario;
 
-    public AlteraFcmIdUsuarioTask(String deviceId){
-        this.deviceId = deviceId;
+    public AlteraFcmIdUsuarioTask(String emailUsuario){
+        this.emailUsuario = emailUsuario;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
     }
 
     @Override
     protected String doInBackground(String... params) {
         try{
-            URL url = new URL("http://notifycar-api.mybluemix.net/firebase/57ec87bf09e632003a48caa2");
+            URL url = new URL("http://notifycar-api.mybluemix.net/firebase/"+emailUsuario);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("PUT");
             conn.setRequestProperty("Content-Type", "application/json");
@@ -32,7 +38,7 @@ public class AlteraFcmIdUsuarioTask extends AsyncTask<String,Void,String> {
             DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 
             JSONObject fire = new JSONObject();
-            fire.put("deviceId", deviceId);
+            fire.put("emailUsuario", emailUsuario);
 
             out.writeBytes(fire.toString());
 

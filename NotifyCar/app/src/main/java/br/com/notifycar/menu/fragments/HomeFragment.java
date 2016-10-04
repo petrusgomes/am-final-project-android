@@ -29,7 +29,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ListaUrlSafeTask task;
     private String idVeiculo;
     private String nomeDoVeiculo;
+    private String nomeDoModelo;
     private TextView txtNomeVeiculo;
+    private TextView txtModeloVeiculo;
 
     @Nullable
     @Override
@@ -51,9 +53,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         nomeDoVeiculo = dadosUsuario.getString("modeloVeiculo");
         idVeiculo = dadosUsuario.getString("idVeiculo");
+        nomeDoModelo = dadosUsuario.getString("fabricanteVeiculo");
 
         txtNomeVeiculo = (TextView) getActivity().findViewById(R.id.txtNomeVeiculo);
         txtNomeVeiculo.setText(nomeDoVeiculo);
+
+        txtModeloVeiculo = (TextView) getActivity().findViewById(R.id.txtNomeModelo);
+        txtModeloVeiculo.setText(nomeDoModelo);
     }
 
 
@@ -61,7 +67,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnMapa:
-                task = new ListaUrlSafeTask(getActivity());
+                task = new ListaUrlSafeTask(getActivity(), idVeiculo);
                 task.execute();
                 break;
             default:
