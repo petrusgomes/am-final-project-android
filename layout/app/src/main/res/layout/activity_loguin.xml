@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_loguin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryNTC"
+    tools:context="com.example.renan.myapplication.LoguinActivity">
+
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/ntc_logo_image_view"
+        android:layout_centerHorizontal="true"
+         />
+    <ImageView
+        android:id="@+id/ntc_logo_name_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/logo_name"
+        android:layout_alignBottom="@id/ntc_logo_image_view"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/ntc_edit_text_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorTextDefaultNTX"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:hint="Email"
+        android:ems="15"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ntc_logo_name_image_view"
+         />
+
+    <EditText
+        android:id="@+id/ntc_edit_text_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorTextDefaultNTX"
+        android:textColor="@color/colorTextDefaultNTX"
+        android:hint="Senha"
+        android:ems="15"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ntc_edit_text_email"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:textColorLink="@android:color/holo_blue_dark" />
+
+    <Button
+        android:id="@+id/ntv_button_login"
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ntc_edit_text_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+         />
+    <Button
+        android:id="@+id/ntv_button_cadastro"
+        android:text="Cadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:layout_below="@id/ntv_button_login"
+        android:onClick="mudaActivity"
+         />
+
+
+</RelativeLayout>
