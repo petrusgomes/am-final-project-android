@@ -21,9 +21,11 @@ public class ListaUrlSafeTask extends AsyncTask<String, Void, String> {
     CamposHelper helper = new CamposHelper();
     private Activity activity;
     private ProgressDialog progressDialog;
+    private String idVeiculo;
 
-    public ListaUrlSafeTask(Activity activity){
+    public ListaUrlSafeTask(Activity activity, String idVeiculo){
         this.activity = activity;
+        this.idVeiculo = idVeiculo;
     }
 
 
@@ -56,7 +58,7 @@ public class ListaUrlSafeTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
 
-        helper.recuperaListaSafe(activity, json);
+        helper.recuperaListaSafe(activity, json, idVeiculo);
 
         progressDialog.dismiss();
 

@@ -5,12 +5,15 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+import br.com.notifycar.repository.api.CadastraFcmIdUsuarioTask;
+
 /**
  * Created by Desenvolvimento on 22/09/2016.
  */
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
-    private static final String TAG = "****************";
+    private static final String TAG = "FirebaseToken: ";
+    private CadastraFcmIdUsuarioTask task;
 
     @Override
     public void onTokenRefresh() {
@@ -18,8 +21,18 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "" + refreshedToken);
 
+        task = new CadastraFcmIdUsuarioTask(refreshedToken,"teste@gmail.com");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                task.execute();
+            }
+        }).start();
+
+
         // TODO: Implement this method to send any registration to your app's servers.
         sendRegistrationToServer(refreshedToken);
+
     }
 
     /**

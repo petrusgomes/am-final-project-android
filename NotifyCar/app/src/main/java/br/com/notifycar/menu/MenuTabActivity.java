@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import br.com.notifycar.R;
-import br.com.notifycar.controller.mapa.MapsActivity;
+import br.com.notifycar.controller.mapa.MapsViewActivity;
 import br.com.notifycar.menu.fragments.HomeFragment;
 import br.com.notifycar.menu.tab.TabFragment;
 

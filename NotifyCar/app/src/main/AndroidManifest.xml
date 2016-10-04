@@ -22,17 +22,18 @@
         android:name="android.support.multidex.MultiDexApplication"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".controller.LoginActivity">
+        <activity android:name=".controller.splashscreen.SplashScreenActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.CadastroActivity"/>
-        <activity android:name=".controller.ListaActivity"/>
-        <activity android:name=".menu.MenuTabActivity"/>
-        <activity android:name=".controller.mapa.MapsActivity"/>
+        <activity android:name=".controller.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".controller.CadastroActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".controller.ListaActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".menu.MenuTabActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".controller.mapa.MapsViewActivity" android:screenOrientation="portrait"/>
         <service
             android:name=".service.MyFirebaseMessagingService">
             <intent-filter>

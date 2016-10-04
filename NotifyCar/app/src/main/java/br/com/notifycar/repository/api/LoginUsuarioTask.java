@@ -27,19 +27,19 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
     private HttpURLConnection conn;
     private String json = "";
     private ProgressDialog progressDialog;
+    private String tokenParaRegistro;
+    private String cpEmail;
     CamposHelper helper = new CamposHelper();
 
-    public LoginUsuarioTask(Activity activity){
+    public LoginUsuarioTask(Activity activity, String cpEmail){
         this.activity = activity;
+        this.cpEmail = cpEmail;
     }
 
 
     @Override
     protected void onPreExecute() {
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setTitle("Carregando...");
-        progressDialog.setMessage("Aguarde");
-        progressDialog.show();
+        helper.showDialog(activity);
     }
 
     @Override
@@ -78,31 +78,36 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
 
             Boolean validaLogin = obj.getBoolean("auth");
 
-            if(validaLogin == true){
-                Intent it = new Intent(activity, MenuTabActivity.class);
-                activity.startActivity(it);
+            if (validaLogin == true) {
+                ListaInformacoesUsuarioTask taskUsuario = new ListaInformacoesUsuarioTask(activity,cpEmail);
+                taskUsuario.execute();
             } else {
-                AlertDialog alerta;
+                    helper.hideDialog(activity);
 
-                final AlertDialog.Builder builderAlert = new AlertDialog.Builder(activity);
+                    AlertDialog alerta;
 
-                builderAlert.setTitle("ERRO!");
-                builderAlert.setMessage("USUARIO OU SENHA INCORRETO");
+                    final AlertDialog.Builder builderAlert = new AlertDialog.Builder(activity);
 
-                builderAlert.setNeutralButton("OK", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    builderAlert.setTitle("ERRO!");
+                    builderAlert.setMessage("USUARIO OU SENHA INCORRETO");
 
-                    }
-                });
-                alerta = builderAlert.create();
-                alerta.show();
-            }
+                    builderAlert.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alerta = builderAlert.create();
+                    alerta.show();
+                }
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        progressDialog.dismiss();
     }
+
+
+
 }

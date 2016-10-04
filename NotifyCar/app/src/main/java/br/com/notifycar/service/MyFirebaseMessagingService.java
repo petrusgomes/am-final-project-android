@@ -16,7 +16,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import br.com.notifycar.R;
-import br.com.notifycar.controller.mapa.MapsActivity;
+import br.com.notifycar.controller.mapa.MapsViewActivity;
 import br.com.notifycar.menu.MenuTabActivity;
 import br.com.notifycar.menu.fragments.HomeFragment;
 

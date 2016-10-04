@@ -1,12 +1,15 @@
 package br.com.notifycar.helper;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,8 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.notifycar.R;
+import br.com.notifycar.controller.mapa.MapsViewActivity;
+import br.com.notifycar.menu.MenuTabActivity;
 import br.com.notifycar.repository.api.BloqueioDesbloqueioVeiculoTask;
-import br.com.notifycar.controller.mapa.MapsActivity;
+import br.com.notifycar.controller.mapa.MapsViewActivity;
 import br.com.notifycar.model.Usuario;
 
 /**
@@ -35,6 +40,11 @@ public class CamposHelper {
     private ListView listView;
     private BloqueioDesbloqueioVeiculoTask task;
 
+    private TextView txtNomeModelo;
+    private TextView txtNomeVeiculo;
+
+    ProgressDialog progressDialog;
+    private ImageView imgStatusBlockVeiculo;
 
 
     public JSONObject recuperaCamposUsuario(Activity activity) throws JSONException {
@@ -91,7 +101,7 @@ public class CamposHelper {
     }
 
 
-    public void recuperaListaSafe(Activity activity, String json){
+    public void recuperaListaSafe(Activity activity, String json, String idVeiculo){
         String urlRemote = "";
         try {
             JSONArray lista = new JSONArray(json);
@@ -99,8 +109,9 @@ public class CamposHelper {
                 urlRemote = lista.getJSONObject(i).getString("remoteControl");
             }
 
-            Intent it = new Intent(activity, MapsActivity.class);
+            Intent it = new Intent(activity, MapsViewActivity.class);
             it.putExtra("urlRemoteControl", urlRemote);
+            it.putExtra("idVeiculo", idVeiculo);
             activity.startActivity(it);
 
         } catch (JSONException e) {
@@ -142,5 +153,82 @@ public class CamposHelper {
         dialog.show();
     }
 
+
+    public void recuperaInformaçõesUsuario(Activity activity, String json){
+
+        try {
+          JSONObject veiculoObject = new JSONObject(json).getJSONObject("veiculo");
+
+          String idVeiculo = veiculoObject.getString("_id");
+          String placa = veiculoObject.getString("placa");
+
+          JSONObject modeloObject = new JSONObject(json).getJSONObject("modelo");
+
+          String modeloVeiculo = modeloObject.getString("nome");
+
+          JSONObject fabricanteObject = new JSONObject(json).getJSONObject("fabricante");
+
+          String fabricanteVeiculo = fabricanteObject.getString("nome");
+
+          JSONObject  usuarioObject = new JSONObject(json).getJSONObject("usuario");
+
+          String emailUsuario = usuarioObject.getString("email");
+
+
+          Intent it = new Intent(activity, MenuTabActivity.class);
+          it.putExtra("idVeiculo", idVeiculo);
+          it.putExtra("emailUsuario", emailUsuario);
+          it.putExtra("modeloVeiculo", modeloVeiculo);
+          it.putExtra("fabricanteVeiculo", fabricanteVeiculo);
+            activity.startActivity(it);
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void listaStatusAlarme(Activity activity, String json){
+        Boolean statusAlarmeVeiculo;
+        Boolean statusBloqueioVeiculo;
+
+        try {
+            JSONObject statusAlarme = new JSONObject(json);
+            statusAlarmeVeiculo = statusAlarme.getBoolean("alarmeDisparado");
+            statusBloqueioVeiculo = statusAlarme.getBoolean("bloqueado");
+
+            imgStatusBlockVeiculo = (ImageView) activity.findViewById(R.id.imgStatusBlock);
+
+            if(statusAlarmeVeiculo == true){
+
+            } else {
+
+            }
+
+            if(statusBloqueioVeiculo == true){
+                 imgStatusBlockVeiculo.setImageResource(R.drawable.status_block_green);
+            } else {
+                imgStatusBlockVeiculo.setImageResource(R.drawable.status_block_red);
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showDialog(Activity activity){
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setTitle("Carregando...");
+        progressDialog.setMessage("Aguarde");
+        progressDialog.show();
+    }
+
+    public void hideDialog(Activity activity){
+        ProgressDialog progressDialog = new ProgressDialog(activity);
+        progressDialog.dismiss();
+    }
 
 }
