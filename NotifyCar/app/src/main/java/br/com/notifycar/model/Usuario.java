@@ -1,9 +1,11 @@
 package br.com.notifycar.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Desenvolvimento on 23/09/2016.
  */
-public class Usuario {
+public class Usuario implements Serializable {
 
     private String nome;
     private String email;

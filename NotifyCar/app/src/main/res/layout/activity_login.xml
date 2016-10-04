@@ -43,10 +43,8 @@
         android:hint="Email"
         android:inputType="text"
         android:layout_marginTop="15dp"
-
         android:layout_below="@+id/edtSenhaLogin"
         android:layout_alignParentTop="true"
-
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"

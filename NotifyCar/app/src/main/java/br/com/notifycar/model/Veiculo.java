@@ -10,6 +10,8 @@ public class Veiculo {
     private String placa;
     private String modeloId;
     private String usuarioId;
+    private String latitude;
+    private String longitude;
 
     public String getCor() {
         return cor;
@@ -49,5 +51,21 @@ public class Veiculo {
 
     public void setUsuarioId(String usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }
