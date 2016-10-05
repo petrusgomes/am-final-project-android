@@ -29,7 +29,7 @@ public class AlteraFcmIdUsuarioTask extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         try{
-            URL url = new URL("http://notifycar-api.mybluemix.net/firebase/"+emailUsuario);
+            URL url = new URL("http://notifycar-api.mybluemix.net/firebase/aguardandoEmail@prot.com");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("PUT");
             conn.setRequestProperty("Content-Type", "application/json");

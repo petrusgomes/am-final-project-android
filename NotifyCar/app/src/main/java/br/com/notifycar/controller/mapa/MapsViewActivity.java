@@ -1,5 +1,6 @@
 package br.com.notifycar.controller.mapa;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,11 +13,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.mediation.MediationAdapter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -34,30 +37,53 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import br.com.notifycar.R;
 import br.com.notifycar.helper.CamposHelper;
+import br.com.notifycar.interfacetask.AsyncResponseLoc;
 import br.com.notifycar.repository.api.ListaUltimaLocalizacaoTask;
+import br.com.notifycar.service.MyCurrencyLocation;
 
 
 public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
-            GoogleApiClient.OnConnectionFailedListener, LocationListener, View.OnClickListener {
+            GoogleApiClient.OnConnectionFailedListener, LocationListener, View.OnClickListener, AsyncResponseLoc {
 
-        GoogleMap mGoogleMap;
-        SupportMapFragment mapFrag;
-        LocationRequest mLocationRequest;
-        GoogleApiClient mGoogleApiClient;
-        Location mLastLocation;
-        Marker mCurrLocationMarker;
-        LocationManager locationManager;
-        Circle circle;
-        Button btnLista;
+    GoogleMap mGoogleMap;
+    SupportMapFragment mapFrag;
+    LocationRequest mLocationRequest;
+    GoogleApiClient mGoogleApiClient;
+    Location mLastLocation;
+    Marker mCurrLocationMarker;
+    LocationManager locationManager;
+    Circle circle;
+    Button btnLista;
     Polyline rectLine;
     PolylineOptions basepoly;
     final ArrayList<String> nomes = new ArrayList<>();
+
+    boolean isGPSEnabled = false;
+
+    // flag for network status
+    boolean isNetworkEnabled = false;
+
+    // flag for GPS status
+    boolean canGetLocation = false;
+
+    Location location = null; // location
+//    double latitude; // latitude
+//    double longitude; // longitude
+
+    // The minimum distance to change Updates in meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
+
+    // The minimum time between updates in milliseconds
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+
 
     Marker car;
     private Button btnSafe;
@@ -73,14 +99,13 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
     private Location locationcar;
 
 
-
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_mapsveiculo);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mapsveiculo);
 
-            //btnLista = (Button) findViewById(R.id.btnLista);
-            //btnLista.setOnClickListener(this);
+        //btnLista = (Button) findViewById(R.id.btnLista);
+        //btnLista.setOnClickListener(this);
 
         btnSafe = (Button) findViewById(R.id.btnSafe);
         btnSafe.setOnClickListener(this);
@@ -93,60 +118,33 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
         url = urlRemote.getString("urlRemoteControl");
         veiculoId = urlRemote.getString("idVeiculo");
 
+        populaLatlongCar();
+        pegarLocalizacaoAtual();
 
+        doSomethingRepeatedly();
 
         helper = new CamposHelper();
-
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                checkLocationPermission();
-            } else {
-                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    showGPSDisabledAlertToUser();
-                }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkLocationPermission();
+        } else {
+            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                showGPSDisabledAlertToUser();
             }
-
-
-
-            mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-            mapFrag.getMapAsync(this);
-
         }
 
-    private void pegarLoc(){
-//        final LocationManager locma = (LocationManager)getSystemService(LOCATION_SERVICE);
 
-        android.location.LocationListener  loc = new android.location.LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-               longitudeAux = location.getLongitude();
-               latitudeAux = location.getLongitude();
-            }
+        mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFrag.getMapAsync(this);
 
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
 
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-        checkLocationPermission();
-        locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 10,10, loc);//Provide Location Updates
     }
-
+int count = 0;
     private void doSomethingRepeatedly() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -155,22 +153,38 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
                 try {
 
 
-                    teste();
-//                    taskLoc = new ListaUltimaLocalizacaoTask(MapsActivity.this, veiculoId);
-//
-//                    taskLoc.delegate = MapsActivity.this;
-//
-//                    taskLoc.execute();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            count++;
+                            Log.i("sasasa", "***********************"+count);
+                            //teste();
+                            taskLoc = new ListaUltimaLocalizacaoTask(MapsViewActivity.this, veiculoId);
+
+                            taskLoc.delegate = MapsViewActivity.this;
+
+                            taskLoc.execute();
+
+                        }
+                    });
+
+
+
+
 
                 } catch (Exception e) {
                     // TODO: handle exception
                 }
-
             }
-        }, 0, 50000);
+        }, 0, 5000);
     }
 
-    public void teste(){
+    public void teste() {
+
+    }
+
+    public void populaLatlongCar() {
         //JSONObject listLoc = null;
         try {
 //            listLoc = new JSONObject(result);
@@ -185,22 +199,32 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
             locationcar = new Location("");
             locationcar.setLatitude(latcar);
             locationcar.setLongitude(loncar);
-
-            pegarLoc();
-
-            Location locuser = new Location("");
-            locuser.setLatitude(latitudeAux);
-            locuser.setLongitude(longitudeAux);
-
-            onLocationChanged(locuser);
-
+//
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    private void showGPSDisabledAlertToUser() {
+    public void pegarLocalizacaoAtual(){
+        MyCurrencyLocation gps = new MyCurrencyLocation(this);
+
+        // check if GPS location can get Location
+        if (gps.canGetLocation()) {
+
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+            if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                Log.d("Your Location", "latitude:" + gps.getLatitude()
+                        + ", longitude: " + gps.getLongitude());
+
+                longitudeAux = gps.getLongitude();
+                latitudeAux = gps.getLatitude();
+            }
+        }
+    }
+
+            private void showGPSDisabledAlertToUser() {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("O GPS está desativado, deseja ativalo ?")
                     .setCancelable(false)
@@ -227,7 +251,7 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
 
             //stop location updates when Activity is no longer active
             if (mGoogleApiClient != null) {
-                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
             }
         }
 
@@ -281,7 +305,6 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onResume() {
         super.onResume();
-        doSomethingRepeatedly();
     }
 
     @Override
@@ -338,8 +361,12 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
 //            cd.add(c4);
 
 
-            if (mCurrLocationMarker != null) {
-                mCurrLocationMarker.remove();
+//            if (mCurrLocationMarker != null) {
+//                mCurrLocationMarker.remove();
+//            }
+
+            if(car != null){
+                car.remove();
             }
 
 
@@ -352,12 +379,12 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
             //move map camera
 
             //Place current location marker
-            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(latLng);
-            markerOptions.title("Posição Atual");
-            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_user));
-            mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
+//            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//            MarkerOptions markerOptions = new MarkerOptions();
+//            markerOptions.position(latLng);
+//            markerOptions.title("Posição Atual");
+//            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_user));
+//            mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLngCar));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
@@ -410,7 +437,7 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
             }
         }
 
-        public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
         public boolean checkLocationPermission() {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -484,4 +511,28 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
 
+    @Override
+    public void processResult(String result) {
+        JSONObject listLoc = null;
+        try {
+            listLoc = new JSONObject(result);
+            latitude = listLoc.getString("latitude");
+            longitude = listLoc.getString("longitude");
+
+
+            double latcar = Double.parseDouble(latitude);
+            double loncar = Double.parseDouble(longitude);
+            locationcar = new Location("");
+            locationcar.setLatitude(latcar);
+            locationcar.setLongitude(loncar);
+
+            Location locuser = new Location("");
+            locuser.setLatitude(latitudeAux);
+            locuser.setLongitude(longitudeAux);
+
+            onLocationChanged(locuser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
