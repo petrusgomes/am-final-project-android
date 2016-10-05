@@ -26,37 +26,6 @@
         android:layout_centerHorizontal="true"
         />
 
-    <EditText
-        android:id="@+id/edtEmailLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:hint="Email"
-        android:ems="15"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ntc_logo_name_image_view"
-        />
-
-    <EditText
-        android:id="@+id/edtSenhaLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:hint="Senha"
-        android:ems="15"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/edtEmailLogin"
-        android:layout_centerHorizontal="true"
-        android:inputType="textPassword"
-        android:textColorLink="@android:color/holo_blue_dark" />
-
     <Button
         android:id="@+id/btnLogin"
         android:text="Login"
@@ -78,6 +47,38 @@
         android:layout_below="@id/btnLogin"
         android:onClick="mudaActivity"
         />
+
+    <EditText
+        android:id="@+id/edtEmailLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:hint="Email"
+        android:ems="15"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/ntc_logo_image_view"
+        android:layout_centerHorizontal="true"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/edtSenhaLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:hint="Senha"
+        android:ems="15"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:inputType="textPassword"
+        android:textColorLink="@android:color/holo_blue_dark"
+        android:layout_below="@+id/edtEmailLogin"
+        android:layout_alignLeft="@+id/edtEmailLogin"
+        android:layout_alignStart="@+id/edtEmailLogin"
+        android:layout_marginTop="10dp"/>
 
 
 </RelativeLayout>
