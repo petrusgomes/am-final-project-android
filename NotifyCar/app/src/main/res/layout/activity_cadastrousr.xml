@@ -8,25 +8,6 @@
     android:background="@color/ntcBackground"
     tools:context=".controller.CadastroActivity">
 
-    <ImageView
-        android:id="@+id/ntc_logo_image_cadastro_view"
-        android:src="@drawable/logo20"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
-
-    <TextView
-        android:text="Cadastro de usuário"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="@color/white"
-        android:id="@+id/CadastroUsuario"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        />
     <EditText
         android:id="@+id/edtNameCadastro"
         android:hint="Nome completo"
@@ -110,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/btnCadastrarUsuario"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:textAlignment="center"
         android:onClick="aindafaltaAlgumacoisa"/>
 
@@ -125,6 +106,25 @@
         android:ems="16"
         />
 
+    <ImageView
+        android:id="@+id/ntc_logo_image_cadastro_view"
+        android:src="@drawable/logo20"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Cadastro de usuário"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/white"
+        android:id="@+id/CadastroUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

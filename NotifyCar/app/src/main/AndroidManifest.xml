@@ -59,7 +59,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAGS9-n3eaffa8TszVTfWNpSd5ErV2oxFg" />
 
-        <activity android:name=".controller.CadastroVeiculoActivity"></activity>
+        <activity android:name=".controller.CadastroVeiculoActivity" />
+        <activity android:name=".controller.CadastroDeviceActivity"></activity>
     </application>
 
 </manifest>

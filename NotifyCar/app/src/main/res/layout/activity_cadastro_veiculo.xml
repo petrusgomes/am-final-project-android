@@ -68,14 +68,14 @@
 
 
     <Button
-        android:text="Cadastrar"
+        android:text="Avançar"
         android:id="@+id/ntc_edit_text_cadastro_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinnerCores"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
         android:ems="16"
+        android:layout_marginTop="110dp"
         />
 
     <TextView
@@ -87,8 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/ntc_edit_text_cadastro_button"
-        android:layout_marginTop="10dp"
-
+        android:layout_marginTop="30dp"
         android:textAllCaps="false"
         android:textAlignment="center" />
 
