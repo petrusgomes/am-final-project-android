@@ -53,9 +53,9 @@ public class CamposHelper {
         edtSenha = (EditText) activity.findViewById(R.id.senha);
 
         JSONObject usuario = new JSONObject();
-        usuario.put("nome", edtNome.getText().toString());
+        //usuario.put("nome", edtNome.getText().toString());
         usuario.put("email", edtEmail.getText().toString());
-        usuario.put("senha", edtSenha.getText().toString());
+        //usuario.put("senha", edtSenha.getText().toString());
 
         return usuario;
     }
