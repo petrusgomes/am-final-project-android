@@ -50,7 +50,5 @@ public class ListaInformacoesUsuarioTask extends AsyncTask<String, Void, String>
     protected void onPostExecute(String json) {
 
         helper.recuperaInformaçõesUsuario(activity, json);
-
-        helper.hideDialog(activity);
     }
 }

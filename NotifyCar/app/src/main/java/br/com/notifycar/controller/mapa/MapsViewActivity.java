@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -97,6 +98,8 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
     private double latitudeAux;
     private double longitudeAux;
     private Location locationcar;
+    private TextView txtRelogioLoc;
+    int count = 2;
 
 
     @Override
@@ -104,14 +107,13 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapsveiculo);
 
-        //btnLista = (Button) findViewById(R.id.btnLista);
-        //btnLista.setOnClickListener(this);
-
         btnSafe = (Button) findViewById(R.id.btnSafe);
         btnSafe.setOnClickListener(this);
 
         txtVoltar = (TextView) findViewById(R.id.ic_voltar);
         txtVoltar.setOnClickListener(this);
+
+        txtRelogioLoc = (TextView) findViewById(R.id.txtRelogioLoc);
 
         Intent it = getIntent();
         Bundle urlRemote = it.getExtras();
@@ -121,7 +123,9 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
         populaLatlongCar();
         pegarLocalizacaoAtual();
 
-        doSomethingRepeatedly();
+
+        relogioEventoLoc();
+
 
         helper = new CamposHelper();
 
@@ -144,7 +148,7 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
 
 
     }
-int count = 0;
+
     private void doSomethingRepeatedly() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -157,9 +161,9 @@ int count = 0;
                         @Override
                         public void run() {
 
-                            count++;
-                            Log.i("sasasa", "***********************"+count);
-                            //teste();
+                            count = 0;
+
+                            Log.i("REPEATELOC", String.valueOf(count));
                             taskLoc = new ListaUltimaLocalizacaoTask(MapsViewActivity.this, veiculoId);
 
                             taskLoc.delegate = MapsViewActivity.this;
@@ -177,12 +181,9 @@ int count = 0;
                     // TODO: handle exception
                 }
             }
-        }, 0, 5000);
+        }, 0, 6000);
     }
 
-    public void teste() {
-
-    }
 
     public void populaLatlongCar() {
         //JSONObject listLoc = null;
@@ -305,6 +306,7 @@ int count = 0;
     @Override
     protected void onResume() {
         super.onResume();
+        doSomethingRepeatedly();
     }
 
     @Override
@@ -436,6 +438,38 @@ int count = 0;
                 LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
             }
         }
+
+    public void relogioEventoLoc(){
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+
+                try {
+
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            int valorRelogio = count++;
+                            Log.i("RELOGIO", "***********************"+count);
+
+                            txtRelogioLoc.setText(String.valueOf(valorRelogio));
+
+
+                        }
+                    });
+
+
+
+
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+            }
+        }, 0, 1000);
+    }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 

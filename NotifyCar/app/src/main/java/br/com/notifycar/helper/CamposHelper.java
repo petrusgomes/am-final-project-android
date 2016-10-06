@@ -174,6 +174,7 @@ public class CamposHelper {
 
           String emailUsuario = usuarioObject.getString("email");
 
+          hideDialog(activity);
 
           Intent it = new Intent(activity, MenuTabActivity.class);
           it.putExtra("idVeiculo", idVeiculo);
@@ -184,6 +185,7 @@ public class CamposHelper {
 
 
         }catch(Exception e){
+            hideDialog(activity);
             e.printStackTrace();
         }
 

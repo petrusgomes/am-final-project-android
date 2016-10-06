@@ -66,6 +66,15 @@
         android:layout_alignParentStart="true"
          />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar Login"
+        android:id="@+id/chkSalvarLogin"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:checked="false" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -76,7 +85,7 @@
         android:layout_below="@+id/edtSenhaLogin"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center_horizontal" />
 
     <Button
@@ -89,7 +98,6 @@
         android:layout_below="@+id/edtSenhaLogin"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="30dp" />
 </LinearLayout>

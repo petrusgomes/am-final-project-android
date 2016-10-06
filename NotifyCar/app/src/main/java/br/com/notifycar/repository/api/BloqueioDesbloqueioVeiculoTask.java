@@ -39,8 +39,12 @@ public class BloqueioDesbloqueioVeiculoTask extends AsyncTask<String, Void, Stri
             conn.setDoOutput(true);
             DataOutputStream out = new DataOutputStream(conn.getOutputStream());
 
+            out.writeBytes("");
+
             out.flush();
             out.close();
+
+            Log.i("sasa", conn.getInputStream().toString());
 
         } catch (Exception ex) {
             ex.printStackTrace();

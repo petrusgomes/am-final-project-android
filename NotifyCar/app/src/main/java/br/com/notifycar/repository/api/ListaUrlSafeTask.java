@@ -34,7 +34,7 @@ public class ListaUrlSafeTask extends AsyncTask<String, Void, String> {
 
         URL url = null;
         try {
-            url = new URL("http://notifycar-api.mybluemix.net/gateway/register/494101363422774");
+            url = new URL("http://notifycar-api.mybluemix.net/gateway/register/0x141000000x23410x8036");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             if (conn.getResponseCode() == 200) {
