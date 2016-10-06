@@ -3,6 +3,15 @@
 
 
 
+    <item android:title="">
+        <menu>
+            <item android:icon="@drawable/logonotify"
+                android:title="NotifyCar Bem-Vindo">
+
+            </item> 
+        </menu>
+    </item>
+
     <item android:title="Menu">
         <menu>
             <item android:title="Home"
