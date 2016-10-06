@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cadastro_usuario"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ntcBackground"
+    tools:context=".controller.CadastroVeiculoActivity">
+    <ImageView
+        android:id="@+id/ntc_logo_image_cadastro_view"
+        android:src="@drawable/logo20"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spinnerMarcas"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/CadastroUsuario"
+        android:text="Cadastro de veículo"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+
+        />
+
+    <Spinner
+        android:id="@+id/spinnerModelos"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerMarcas"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+
+        />
+    <Spinner
+        android:id="@+id/spinnerCores"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/placaEdt"
+        android:layout_alignLeft="@+id/spinnerModelos"
+        android:layout_alignStart="@+id/spinnerModelos" />
+
+    <EditText
+        android:id="@+id/placaEdt"
+        android:hint="Placa"
+        android:textColorHint="@color/white"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_toRightOf="@id/spinnerCores"
+        android:layout_below="@id/spinnerModelos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:layout_marginLeft="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="34dp"
+        />
+
+
+    <Button
+        android:text="Avançar"
+        android:id="@+id/ntc_edit_text_cadastro_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerCores"
+        android:layout_centerHorizontal="true"
+        android:ems="16"
+        android:layout_marginTop="110dp"
+        />
+
+    <TextView
+        android:id="@+id/ntc_text_view_cadastro_login"
+        android:text="@string/possui_conta"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ntc_edit_text_cadastro_button"
+        android:layout_marginTop="30dp"
+        android:textAllCaps="false"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/spinnerMarcas"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+
+        android:layout_below="@+id/CadastroUsuario"
+        android:layout_alignLeft="@+id/spinnerModelos"
+        android:layout_alignStart="@+id/spinnerModelos" />
+
+
+</RelativeLayout>

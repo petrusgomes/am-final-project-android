@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cadastro_device"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ntcBackground"
+    tools:context="br.com.notifycar.controller.CadastroDeviceActivity">
+
+    <TextView
+        android:text="Cadastro de dispositivo"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/white"
+        android:id="@+id/CadastroDispositivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/ntc_logo_image_cadastro_view"
+        android:src="@drawable/logo20"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/deviceEdt"
+        android:hint="Código do device"
+        android:textColorHint="@color/white"
+        android:ems="15"
+        android:layout_below="@id/CadastroDispositivo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"/>
+
+
+    <Button
+        android:text="Cadastrar"
+        android:id="@+id/btnCadastrarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ntc_logo_image_cadastro_view"
+        android:layout_centerHorizontal="true"
+        android:ems="16"
+    />
+
+    <TextView
+        android:id="@+id/txtLogin"
+        android:text="@string/possui_conta"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnCadastrarUsuario"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:onClick="aindafaltaAlgumacoisa"/>
+
+
+</RelativeLayout>

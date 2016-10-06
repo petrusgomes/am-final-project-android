@@ -48,14 +48,14 @@ public class CamposHelper {
 
 
     public JSONObject recuperaCamposUsuario(Activity activity) throws JSONException {
-        edtNome = (EditText) activity.findViewById(R.id.nome);
+        //edtNome = (EditText) activity.findViewById(R.id.nome);
         edtEmail = (EditText) activity.findViewById(R.id.email);
-        edtSenha = (EditText) activity.findViewById(R.id.senha);
+        //edtSenha = (EditText) activity.findViewById(R.id.senha);
 
         JSONObject usuario = new JSONObject();
-        usuario.put("nome", edtNome.getText().toString());
+        //usuario.put("nome", edtNome.getText().toString());
         usuario.put("email", edtEmail.getText().toString());
-        usuario.put("senha", edtSenha.getText().toString());
+        //usuario.put("senha", edtSenha.getText().toString());
 
         return usuario;
     }

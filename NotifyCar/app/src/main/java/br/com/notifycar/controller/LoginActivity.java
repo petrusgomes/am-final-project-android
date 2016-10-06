@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        customImgLogo = (CustomImgLogo) findViewById(R.id.imgLogo);
-        customImgLogo.setImageResource(R.drawable.logonotify);
+        //customImgLogo = (CustomImgLogo) findViewById(R.id.imgLogo);
+        //customImgLogo.setImageResource(R.drawable.logonotify);
 
         btnCadastrarActivity = (Button) findViewById(R.id.btnCadastrar);
         btnCadastrarActivity.setOnClickListener(this);
@@ -77,9 +77,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                    task = new LoginUsuarioTask(this, edtEmail.getText().toString());
                    task.execute();
                }
-
-
-
                break;
            case R.id.btnCadastrar:
                Intent it = new Intent(this, CadastroActivity.class);
