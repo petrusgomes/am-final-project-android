@@ -104,7 +104,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:ems="16"
-        />
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/ntc_logo_image_cadastro_view"

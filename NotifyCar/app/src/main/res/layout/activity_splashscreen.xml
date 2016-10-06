@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/ntcBackground"
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:text="BEM-VINDO AO NOTIFYCAR"
+    <ImageView
+        android:id="@+id/ntc_logo_image_cadastro_view"
+        android:src="@drawable/logo20"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+         />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"/>
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo_name" />
 
 </LinearLayout>
