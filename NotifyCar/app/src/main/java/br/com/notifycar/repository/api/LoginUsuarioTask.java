@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.CheckBox;
 
 import org.json.JSONObject;
 
@@ -14,8 +15,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import br.com.notifycar.R;
 import br.com.notifycar.helper.CamposHelper;
 import br.com.notifycar.menu.MenuTabActivity;
+import br.com.notifycar.repository.api.sharedpreferences.SalvarInformacoes;
 import br.com.notifycar.util.UtilJson;
 
 /**
@@ -29,6 +32,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
     private ProgressDialog progressDialog;
     private String tokenParaRegistro;
     private String cpEmail;
+    private CheckBox chkSalvarLogin;
     CamposHelper helper = new CamposHelper();
 
     public LoginUsuarioTask(Activity activity, String cpEmail){
@@ -79,6 +83,12 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
             Boolean validaLogin = obj.getBoolean("auth");
 
             if (validaLogin == true) {
+                chkSalvarLogin = (CheckBox) activity.findViewById(R.id.chkSalvarLogin);
+                if(chkSalvarLogin.isChecked()) {
+                    SalvarInformacoes salvarInformacoesCp = new SalvarInformacoes(activity);
+                    salvarInformacoesCp.salvarInfoLogin(cpEmail);
+                }
+
                 ListaInformacoesUsuarioTask taskUsuario = new ListaInformacoesUsuarioTask(activity,cpEmail);
                 taskUsuario.execute();
             } else {
@@ -103,6 +113,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
 
 
         } catch (Exception e) {
+            helper.hideDialog(activity);
             e.printStackTrace();
         }
 

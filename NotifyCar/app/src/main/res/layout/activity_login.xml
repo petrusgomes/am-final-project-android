@@ -81,4 +81,40 @@
         android:layout_marginTop="10dp"/>
 
 
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar Login"
+        android:id="@+id/chkSalvarLogin"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:checked="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="LOGAR"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/btnLogin"
+        android:layout_below="@+id/edtSenhaLogin"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="CADASTRO"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/btnCadastrar"
+        android:layout_below="@+id/edtSenhaLogin"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="30dp" />
 </RelativeLayout>
