@@ -60,7 +60,7 @@
             android:value="AIzaSyAGS9-n3eaffa8TszVTfWNpSd5ErV2oxFg" />
 
         <activity android:name=".controller.CadastroVeiculoActivity" />
-        <activity android:name=".controller.CadastroDeviceActivity"></activity>
+        <activity android:name=".controller.CadastroDeviceActivity"/>
     </application>
 
 </manifest>

@@ -31,6 +31,7 @@
         android:id="@+id/deviceEdt"
         android:hint="Código do device"
         android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:ems="15"
         android:layout_below="@id/CadastroDispositivo"
         android:layout_centerHorizontal="true"

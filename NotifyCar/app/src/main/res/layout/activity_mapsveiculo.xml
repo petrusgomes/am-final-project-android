@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/fundoCabecalho"
             android:textSize="60dp"
-            android:background="@color/turquiose"
+            android:background="@color/ntcBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -32,6 +32,7 @@
 
     <Spinner
         android:id="@+id/spinnerModelos"
+        android:textColor="@color/white"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinnerMarcas"
@@ -48,12 +49,14 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/placaEdt"
         android:layout_alignLeft="@+id/spinnerModelos"
-        android:layout_alignStart="@+id/spinnerModelos" />
+        android:layout_alignStart="@+id/spinnerModelos"
+        android:textColor="@color/white"/>
 
     <EditText
         android:id="@+id/placaEdt"
         android:hint="Placa"
         android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:textAppearance="?android:textAppearanceMedium"
         android:layout_toRightOf="@id/spinnerCores"
         android:layout_below="@id/spinnerModelos"
@@ -93,6 +96,7 @@
 
     <Spinner
         android:id="@+id/spinnerMarcas"
+        android:textColor="@color/white"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
