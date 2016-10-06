@@ -8,4 +8,5 @@
     <color name="white">#FFF</color>
     <color name="turquiose">#40E0D0</color>
     <color name="bgLogo">#0e293c</color>
+    <color name="ntcBackground">#0E293C</color>
 </resources>
