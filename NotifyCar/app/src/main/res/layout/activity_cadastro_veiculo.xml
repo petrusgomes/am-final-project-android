@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinnerMarcas"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -34,72 +33,65 @@
         android:id="@+id/spinnerModelos"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerMarcas"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="40dp"
+
+        android:layout_above="@+id/spinnerCores"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-
-        />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
     <Spinner
         android:id="@+id/spinnerCores"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/placaEdt"
-        android:layout_alignLeft="@+id/spinnerModelos"
-        android:layout_alignStart="@+id/spinnerModelos" />
+        android:layout_alignBottom="@+id/ntc_logo_image_cadastro_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/placaEdt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:id="@+id/placaEdt"
         android:hint="Placa"
         android:textColorHint="@color/white"
         android:textAppearance="?android:textAppearanceMedium"
-        android:layout_toRightOf="@id/spinnerCores"
-        android:layout_below="@id/spinnerModelos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="6"
-        android:layout_marginLeft="15dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:layout_marginTop="34dp"
-        />
+        android:layout_below="@+id/ntc_logo_image_cadastro_view"
+        android:layout_alignRight="@+id/edtAno"
+        android:layout_alignEnd="@+id/edtAno"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/white" />
 
 
     <Button
         android:text="Avançar"
-        android:id="@+id/ntc_edit_text_cadastro_button"
+        android:id="@+id/btnCadastroVeiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerCores"
-        android:layout_centerHorizontal="true"
         android:ems="16"
-        android:layout_marginTop="110dp"
-        />
+        android:layout_marginBottom="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/ntc_text_view_cadastro_login"
-        android:text="@string/possui_conta"
+    <EditText
+        android:id="@+id/edtAno"
+        android:hint="Ano"
+        android:textColorHint="@color/white"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="6"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/placaEdt"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/ntc_edit_text_cadastro_button"
-        android:layout_marginTop="30dp"
-        android:textAllCaps="false"
-        android:textAlignment="center" />
-
-    <Spinner
-        android:id="@+id/spinnerMarcas"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-
-        android:layout_below="@+id/CadastroUsuario"
-        android:layout_alignLeft="@+id/spinnerModelos"
-        android:layout_alignStart="@+id/spinnerModelos" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

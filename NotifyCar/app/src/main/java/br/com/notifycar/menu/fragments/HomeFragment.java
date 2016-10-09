@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 
 import br.com.notifycar.R;
 import br.com.notifycar.repository.api.ListaInformacoesUsuarioTask;
+import br.com.notifycar.repository.api.ListaStatusAlarmeVeiculoTask;
 import br.com.notifycar.repository.api.ListaUrlSafeTask;
 
 /**
@@ -30,8 +31,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private String idVeiculo;
     private String nomeDoVeiculo;
     private String nomeDoModelo;
+    private String placa;
     private TextView txtNomeVeiculo;
     private TextView txtModeloVeiculo;
+    private String dispositivoId;
 
     @Nullable
     @Override
@@ -48,12 +51,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
 
+
         Intent it = getActivity().getIntent();
         Bundle dadosUsuario = it.getExtras();
 
         nomeDoVeiculo = dadosUsuario.getString("modeloVeiculo");
         idVeiculo = dadosUsuario.getString("idVeiculo");
         nomeDoModelo = dadosUsuario.getString("fabricanteVeiculo");
+        placa = dadosUsuario.getString("placaVeiculo");
+        dispositivoId = dadosUsuario.getString("dispositivoId");
 
         txtNomeVeiculo = (TextView) getActivity().findViewById(R.id.txtNomeVeiculo);
         txtNomeVeiculo.setText(nomeDoVeiculo);
@@ -67,7 +73,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnMapa:
-                task = new ListaUrlSafeTask(getActivity(), idVeiculo);
+                task = new ListaUrlSafeTask(getActivity(), idVeiculo, placa, dispositivoId);
                 task.execute();
                 break;
             default:

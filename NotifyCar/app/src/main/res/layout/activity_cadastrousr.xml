@@ -83,7 +83,7 @@
         />
 
     <TextView
-        android:id="@+id/txtLogin"
+        android:id="@+id/txtBackLogin"
         android:text="@string/possui_conta"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/white"
@@ -92,19 +92,18 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/btnCadastrarUsuario"
         android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:onClick="aindafaltaAlgumacoisa"/>
+        android:textAlignment="center"/>
 
     <Button
         android:text="Listar"
         android:id="@+id/btnListaUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtLogin"
+        android:layout_below="@+id/txtBackLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:ems="16"
-        />
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/ntc_logo_image_cadastro_view"
