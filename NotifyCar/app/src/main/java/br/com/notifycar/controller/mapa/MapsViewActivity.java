@@ -93,12 +93,14 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
     private TextView txtVoltar;
     private ListaUltimaLocalizacaoTask taskLoc;
     private String veiculoId;
+    private String placaVeiculo;
     private String latitude;
     private String longitude;
     private double latitudeAux;
     private double longitudeAux;
     private Location locationcar;
     private TextView txtRelogioLoc;
+    private TextView txtPlacaVeiculo;
     int count = 2;
 
 
@@ -115,10 +117,15 @@ public class MapsViewActivity extends AppCompatActivity implements OnMapReadyCal
 
         txtRelogioLoc = (TextView) findViewById(R.id.txtRelogioLoc);
 
+        txtPlacaVeiculo = (TextView) findViewById(R.id.txtPlacaVeiculo);
+
         Intent it = getIntent();
         Bundle urlRemote = it.getExtras();
         url = urlRemote.getString("urlRemoteControl");
         veiculoId = urlRemote.getString("idVeiculo");
+        placaVeiculo = urlRemote.getString("placaVeiculo");
+
+        txtPlacaVeiculo.setText(placaVeiculo);
 
         populaLatlongCar();
         pegarLocalizacaoAtual();

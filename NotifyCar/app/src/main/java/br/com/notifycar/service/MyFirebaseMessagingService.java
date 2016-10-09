@@ -17,6 +17,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import br.com.notifycar.R;
+import br.com.notifycar.controller.LoginActivity;
 import br.com.notifycar.controller.mapa.MapsViewActivity;
 import br.com.notifycar.menu.MenuTabActivity;
 import br.com.notifycar.menu.fragments.HomeFragment;
@@ -44,7 +45,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
     private void sendNotification(String title, String messageBody) {
-        Intent intent = new Intent(this, MenuTabActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);

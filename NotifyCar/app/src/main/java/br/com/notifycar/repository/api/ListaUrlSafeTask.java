@@ -22,10 +22,14 @@ public class ListaUrlSafeTask extends AsyncTask<String, Void, String> {
     private Activity activity;
     private ProgressDialog progressDialog;
     private String idVeiculo;
+    private String placa;
+    private String dispositivoId;
 
-    public ListaUrlSafeTask(Activity activity, String idVeiculo){
+    public ListaUrlSafeTask(Activity activity, String idVeiculo, String placa, String dispositivoId){
         this.activity = activity;
         this.idVeiculo = idVeiculo;
+        this.placa = placa;
+        this.dispositivoId = dispositivoId;
     }
 
 
@@ -34,7 +38,7 @@ public class ListaUrlSafeTask extends AsyncTask<String, Void, String> {
 
         URL url = null;
         try {
-            url = new URL("http://notifycar-api.mybluemix.net/gateway/register/0x141000000x23410x8036");
+            url = new URL("http://notifycar-api.mybluemix.net/gateway/register/"+dispositivoId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             if (conn.getResponseCode() == 200) {
@@ -58,7 +62,7 @@ public class ListaUrlSafeTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
 
-        helper.recuperaListaSafe(activity, json, idVeiculo);
+        helper.recuperaListaSafe(activity, json, idVeiculo, placa);
 
         progressDialog.dismiss();
 

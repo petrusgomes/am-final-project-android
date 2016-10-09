@@ -61,11 +61,9 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
             out.flush();
             out.close();
 
+            InputStream conteudo = conn.getInputStream();
+            json = UtilJson.toString(conteudo);
 
-            if(conn.getResponseCode() == 200) {
-                InputStream conteudo = conn.getInputStream();
-                json = UtilJson.toString(conteudo);
-            }
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -88,10 +86,10 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
                     SalvarInformacoes salvarInformacoesCp = new SalvarInformacoes(activity);
                     salvarInformacoesCp.salvarInfoLogin(cpEmail);
                 }
-
+                helper.hideDialog(activity);
                 ListaInformacoesUsuarioTask taskUsuario = new ListaInformacoesUsuarioTask(activity,cpEmail);
                 taskUsuario.execute();
-            } else {
+            } else if(validaLogin == false || json.isEmpty()) {
                     helper.hideDialog(activity);
 
                     AlertDialog alerta;
@@ -117,6 +115,7 @@ public class LoginUsuarioTask extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
 
+        helper.hideDialog(activity);
     }
 
 

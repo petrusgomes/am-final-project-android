@@ -37,31 +37,19 @@
         android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textColor="@color/white" />
 
 
     <Button
         android:text="Cadastrar"
-        android:id="@+id/btnCadastrarUsuario"
+        android:id="@+id/btnCadastroDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="16"
         android:layout_below="@+id/ntc_logo_image_cadastro_view"
         android:layout_centerHorizontal="true"
-        android:ems="16"
-    />
-
-    <TextView
-        android:id="@+id/txtLogin"
-        android:text="@string/possui_conta"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/btnCadastrarUsuario"
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:onClick="aindafaltaAlgumacoisa"/>
+        android:layout_marginTop="47dp" />
 
 
 </RelativeLayout>
